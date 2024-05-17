@@ -2,7 +2,7 @@
 streamlit 
 datetime
 datetime
-streamlink
+streamlink== 6.7.4
 time
 os
 signal
