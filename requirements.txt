@@ -2,7 +2,7 @@
 streamlit 
 datetime
 datetime
-pip install streamlink
+!pip install streamlink
 streamlink
 time
 os
