@@ -9,5 +9,6 @@ signal
 subprocess
 multiprocessing
 Process
-Popen, PIPE
+Popen
+PIPE
 sys
