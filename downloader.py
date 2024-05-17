@@ -2,7 +2,7 @@ import os
 import streamlit as st
 import datetime
 from datetime import datetime
-pip install streamlink
+!pip install streamlink
 import streamlink
 import time
 import os
