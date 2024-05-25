@@ -18,37 +18,26 @@ def stream_to_url(url, quality='best'):
 
 
 if url :
-
     play_file=st.video(url)
-
-stream_url = stream_to_url(url)
-
-record=st.button("Record" )
-
-
-
-
-# Function to download YouTube live stream
-
-# Function to download YouTube live stream
-
-
-if record:
-
-  stream_url = stream_to_url(url)
-  with st.spinner('Recording ...'):
-    fmpeg_process = (ffmpeg
+    
+    stream_url = stream_to_url(url)
+    
+    record=st.button("Record" )
+    if record:
+        stream_url = stream_to_url(url)
+        with st.spinner('Recording ...'):
+            fmpeg_process = (ffmpeg
     .input(stream_url)
     .output('/content/video.mp4')
     .overwrite_output()
     .run_async())
         
-  def stop():
-    fmpeg_process.send_signal(signal.SIGQUIT)
+     def stop():
+         fmpeg_process.send_signal(signal.SIGQUIT)
     #st.button("Stop",on_click=stop)
-       
-  if st.button("Stop",on_click=stop) :
-      st.download_button(
+                 
+         if st.button("Stop",on_click=stop) :
+             st.download_button(
                    label="Download Stream ....",
                    data="/content/video.mp4",
                    file_name="stream.mp4",
