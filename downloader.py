@@ -33,7 +33,7 @@ if url :
     .run_async())
         
     def stop():
-        fmpeg_process.send_signal(signal.SIGQUIT)
+        fmpeg_process.send_signal(signal.CTRL_BREAK_EVENT)
     #st.button("Stop",on_click=stop)
                  
     st.button("Stop",on_click=stop) 
