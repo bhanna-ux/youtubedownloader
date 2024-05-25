@@ -28,7 +28,7 @@ if url :
         with st.spinner('Recording ...'):
             fmpeg_process = (ffmpeg
     .input(stream_url)
-    .output('/content/video.mp4')
+    .output('/video.mp4')
     .overwrite_output()
     .run_async())
         
@@ -39,7 +39,7 @@ if url :
          if st.button("Stop",on_click=stop) :
              st.download_button(
                    label="Download Stream ....",
-                   data="/content/video.mp4",
+                   data="/video.mp4",
                    file_name="stream.mp4",
                    mime="video/mp4"
                  )
