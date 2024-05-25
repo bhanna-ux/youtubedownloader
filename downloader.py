@@ -47,8 +47,8 @@ if record:
     fmpeg_process.send_signal(signal.SIGQUIT)
     #st.button("Stop",on_click=stop)
        
-   if st.button("Stop",on_click=stop) :
-    st.download_button(
+  if st.button("Stop",on_click=stop) :
+      st.download_button(
                    label="Download Stream ....",
                    data="/content/video.mp4",
                    file_name="stream.mp4",
