@@ -1,46 +1,56 @@
-import os
-import streamlit as st
-import datetime
-from datetime import datetime
+import streamlit as st 
 import streamlink
 import time
 import os
 import signal
-import subprocess
-from multiprocessing import Process
-from subprocess import Popen, PIPE
-import sys
-
+from streamlink import Streamlink
+import ffmpeg
 
 st.title(":blue[YouTube Live Downloader]")
 
-current_datetime = datetime.now().strftime("%H-%M")
+
 url = st.text_input(':blue[Add Live youtube URL here:]')
+def stream_to_url(url, quality='best'):
+    # The "audio_only" quality may be invalid for some streams (check).
+    session = Streamlink()
+    streams = session.streams(url)
+    return streams[quality].to_url()
+
+
 if url :
 
     play_file=st.video(url)
 
-record=st.sidebar.button("Record" )
-stop = st.sidebar.button("Stop" )
+stream_url = stream_to_url(url)
+
+record=st.button("Record" )
 
 
-output_file="Stream @"
+
+
 # Function to download YouTube live stream
 
 # Function to download YouTube live stream
 
 
 if record:
-    st.spinner(text="Recording...")
-    command = "streamlink", url, "best", "-o", f"c:/users/afp/{output_file}.mp4"
-    subprocess.run(command,shell=True)
-    if stop:
-        subprocess.terminate(shell=True)
 
-with open("c:/users/afp/Stream @.mp4", "rb") as file:
+  stream_url = stream_to_url(url)
+  with st.spinner('Recording ...'):
+    fmpeg_process = (ffmpeg
+    .input(stream_url)
+    .output('/content/video.mp4')
+    .overwrite_output()
+    .run_async())
+        
+  def stop():
+    fmpeg_process.send_signal(signal.SIGQUIT)
+    #st.button("Stop",on_click=stop)
+       
+   if st.button("Stop",on_click=stop) :
     st.download_button(
-                label="Download video",
-                data=file,
-                file_name="stream.mp4",
-                mime="video/mp4"
-              )
+                   label="Download Stream ....",
+                   data="/content/video.mp4",
+                   file_name="stream.mp4",
+                   mime="video/mp4"
+                 )
