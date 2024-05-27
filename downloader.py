@@ -10,15 +10,16 @@ st.title(":blue[YouTube Live Downloader]")
 
 
 url = st.text_input(':blue[Add Live youtube URL here:]')
-def stream_to_url(url, quality='best'):
-    # The "audio_only" quality may be invalid for some streams (check).
-    session = Streamlink()
-    streams = session.streams(url)
-    return streams[quality].to_url()
+
 
 
 if url :
     play_file=st.video(url)
+    def stream_to_url(url, quality='best'):
+    # The "audio_only" quality may be invalid for some streams (check).
+    session = Streamlink()
+    streams = session.streams(url)
+    return streams[quality].to_url()
     
     stream_url = stream_to_url(url)
     
