@@ -158,7 +158,7 @@ def recordingaudio():
 .input(stream_url)
 .audio
 .output(
-'/home/bassem/Desktop/videos/'+videoname+'.mp3')
+'temp/'+videoname+'.mp3')
 .overwrite_output()
 .run_async()
 )
@@ -172,7 +172,7 @@ def recordingaudio():
 
 def record():
   process= subprocess.Popen( ["streamlink" , url ,
-"best","-o",'/home/bassem/Desktop/videos/'+videoname+'.mp4'])
+"best","-o",'temp/'+videoname+'.mp4'])
   
   #stdout=process.communicate()
   #st.text('\n'.join(stdout.decode().split('\n')))
@@ -206,7 +206,8 @@ st.sidebar.button("Start Record Audio Only  ",on_click=recordingaudio)
             #fmpeg_process.send_signal(signal.SIGCONT)
         #if Finish:
             #fmpeg_process.send_signal(signal.SIGQUIT)
-def file_selector(folder_path='/home/bassem/Desktop/videos/'):
+def file_selector(folder_path='temp'):
+    os.makedirs('temp', exist_ok=True)
     filenames = os.listdir(folder_path)
     selected_filename = st.sidebar.selectbox(':blue[select your file from Downloads Folder]', filenames)
     #return os.path.join(folder_path, selected_filename)
