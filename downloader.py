@@ -153,6 +153,7 @@ if url :
   play_file=st.video(url)
 
 def recordingaudio():
+    os.makedirs('temp', exist_ok=True)
     stream_url = stream_to_url(url)
     fmpeg_process = (ffmpeg
 .input(stream_url)
@@ -171,6 +172,7 @@ def recordingaudio():
 
 
 def record():
+    os.makedirs('temp', exist_ok=True)
   process= subprocess.Popen( ["streamlink" , url ,
 "best","-o",'temp/'+videoname+'.mp4'])
   
