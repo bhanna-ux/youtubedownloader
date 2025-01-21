@@ -173,13 +173,13 @@ def recordingaudio():
 
 def record():
     os.makedirs('temp', exist_ok=True)
-  process= subprocess.Popen( ["streamlink" , url ,
-"best","-o",'temp/'+videoname+'.mp4'])
+    process= subprocess.Popen( ["streamlink" , url ,
+                                "best","-o",'temp/'+videoname+'.mp4'])
   
   #stdout=process.communicate()
   #st.text('\n'.join(stdout.decode().split('\n')))
-  st.write(":red[RECORDING Video ....]",height=30)
-  st.components.v1.html(html,width=100,height=20)
+    st.write(":red[RECORDING Video ....]",height=30)
+    st.components.v1.html(html,width=100,height=20)
 
   def Finish():
     process.send_signal(signal.SIGQUIT)
