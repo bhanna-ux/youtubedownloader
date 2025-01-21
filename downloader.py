@@ -181,10 +181,10 @@ def record():
     st.write(":red[RECORDING Video ....]",height=30)
     st.components.v1.html(html,width=100,height=20)
 
-  def Finish():
+def Finish():
     process.send_signal(signal.SIGQUIT)
     st.write(':red[Recording FINISHED ..... ]',height=30)
-  st.button("Finish Recording ",on_click=Finish)
+    st.button("Finish Recording ",on_click=Finish)
 
   
 st.sidebar.button("Start Record Video  ",on_click=record) 
