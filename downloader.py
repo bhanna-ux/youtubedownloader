@@ -189,14 +189,12 @@ def record():
 def recording():
     
     stream_url = stream_to_url(url)
-
-
-
+    os.makedirs('temp', exist_ok=True)
     fmpeg_process = (ffmpeg
 .input(stream_url)
 .filter("fps",fps=25)
 .output(
-'/kaggle/working/videos/'+videoname+'.mp4',map='0:0')
+'temp/'+videoname+'.mp4',map='0:0')
 .overwrite_output()
 .run_async()
 )
