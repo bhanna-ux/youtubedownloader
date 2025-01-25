@@ -135,6 +135,7 @@ html ="""
 
 st.subheader(":blue[YTube Live Stream Recorder]",divider='red')
 
+col1, col2 = st.columns(2)
 
 url = st.sidebar.text_input(':blue[Add Live youtube URL here:]'+':red[*]')
 videoname=st.sidebar.text_input(':blue[Write Name of File]'+':red[*]')
@@ -150,7 +151,10 @@ def stream_to_url(url, quality='best'):
 
 
 if url :
-  play_file=st.video(url)
+    with col1:
+        st.write("Stream Live ")
+        play_file=st.video(url)
+  
 
 def recordingaudio():
     os.makedirs('temp', exist_ok=True)
