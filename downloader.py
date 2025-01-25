@@ -208,12 +208,14 @@ st.sidebar.button("Start Record Audio Only  ",on_click=recordingaudio)
             #fmpeg_process.send_signal(signal.SIGCONT)
         #if Finish:
             #fmpeg_process.send_signal(signal.SIGQUIT)
-def file_selector(folder_path='temp'):
+def file_selector(folder_path='temp/'):
+    
     #os.makedirs('temp', exist_ok=True)
     filenames = os.listdir(folder_path)
     selected_filename = st.sidebar.selectbox(':blue[select your file from Downloads Folder]', filenames)
     #return os.path.join(folder_path, selected_filename)
     with open(folder_path +selected_filename, "rb") as file:
+        
         d=file.read()
         btn = st.sidebar.download_button(
                 label=":red[Reload Page Before ]"+":blue[ Download ]",
