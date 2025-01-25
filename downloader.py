@@ -186,8 +186,31 @@ def record():
         st.write(':red[Recording FINISHED ..... ]',height=30)
     st.button("Finish Recording ",on_click=Finish)
 
+def recording():
+    
+    stream_url = stream_to_url(url)
+
+
+
+    fmpeg_process = (ffmpeg
+.input(stream_url)
+.filter("fps",fps=25)
+.output(
+'/kaggle/working/videos/'+videoname+'.mp4',map='0:0')
+.overwrite_output()
+.run_async()
+)
+    st.write(":red[RECORDING Video 25fps  ....]",height=30)
+    st.components.v1.html(html,width=100,height=20)
+    def Finish():
+        fmpeg_process.send_signal(signal.SIGQUIT)
+        st.write(':red[Recording FINISHED ..... ]',height=30)
+        
+    st.button("Finish Recording ",on_click=Finish)
+
   
 st.sidebar.button("Start Record Video  ",on_click=record) 
+st.sidebar.button("Start Record Video 25fps  ",on_click=recording)
 st.sidebar.button("Start Record Audio Only  ",on_click=recordingaudio) 
 #def pause():
   #fmpeg_process.send_signal(signal.SIGSTOP)
