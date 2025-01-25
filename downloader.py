@@ -181,9 +181,9 @@ def record():
     st.write(":red[RECORDING Video ....]",height=30)
     st.components.v1.html(html,width=100,height=20)
 
-def Finish():
-    process.send_signal(signal.SIGQUIT)
-    st.write(':red[Recording FINISHED ..... ]',height=30)
+    def Finish():
+        process.send_signal(signal.SIGQUIT)
+        st.write(':red[Recording FINISHED ..... ]',height=30)
     st.button("Finish Recording ",on_click=Finish)
 
   
@@ -209,7 +209,7 @@ st.sidebar.button("Start Record Audio Only  ",on_click=recordingaudio)
         #if Finish:
             #fmpeg_process.send_signal(signal.SIGQUIT)
 def file_selector(folder_path='temp'):
-    os.makedirs('temp', exist_ok=True)
+    #os.makedirs('temp', exist_ok=True)
     filenames = os.listdir(folder_path)
     selected_filename = st.sidebar.selectbox(':blue[select your file from Downloads Folder]', filenames)
     #return os.path.join(folder_path, selected_filename)
