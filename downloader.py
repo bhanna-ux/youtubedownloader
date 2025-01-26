@@ -147,7 +147,7 @@ def stream_to_url(url, quality='best'):
     # The "audio_only" quality may be invalid for some streams (check).
     session = Streamlink()
     streams = session.streams(url)
-    return streams['best'].to_url()
+    return streams[quality].to_url()
 
 
 if url :
