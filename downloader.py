@@ -158,7 +158,7 @@ if url :
 
 def recordingaudio():
     os.makedirs('temp', exist_ok=True)
-    stream_url = stream_to_url(url)
+    stream_url = stream_to_url(url,quality='medium'):
     fmpeg_process = (ffmpeg
 .input(stream_url)
 .audio
