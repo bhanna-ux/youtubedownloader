@@ -211,7 +211,7 @@ def recording():
     st.button("Finish Recording ",on_click=Finish)
 
   
-st.sidebar.button("Start Record Video  ",on_click=record) 
+#st.sidebar.button("Start Record Video  ",on_click=record) 
 st.sidebar.button("Start Record Video 25fps  ",on_click=recording)
 st.sidebar.button("Start Record Audio Only  ",on_click=recordingaudio) 
 #def pause():
