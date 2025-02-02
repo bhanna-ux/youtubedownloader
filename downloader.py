@@ -155,10 +155,7 @@ def stream_to_url(url, quality='best'):
     return streams[quality].to_url
 
 
-if url :
-    with col1:
-        st.write("Stream Live ")
-        play_file=st.video(url)
+
   
 
 def recordingaudio():
