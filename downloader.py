@@ -148,11 +148,11 @@ c=datetime.now()
 current_time=c.strftime('%H:%M')
 #videoname=videoname +'@'+str(current_time)
 
-def stream_to_url(url):
+def stream_to_url(url,quality='best'):
     # The "audio_only" quality may be invalid for some streams (check).
     session = Streamlink()
     streams = session.streams(url)
-    return streams.to_url()
+    return streams[quality].to_url()
 
 
 
@@ -218,7 +218,7 @@ if st.button("Play Recorded Video"):
         video_file = open('temp/'+videoname+'.mp4', "rb")
         video_bytes = video_file.read()
         st.video(video_bytes)
-#st.sidebar.button("Start Record Video  ",on_click=record) 
+st.sidebar.button("Start Record Video  ",on_click=record) 
 st.sidebar.button("Start Record Video 25fps  ",on_click=recording)
 st.sidebar.button("Start Record Audio Only  ",on_click=recordingaudio) 
 #def pause():
