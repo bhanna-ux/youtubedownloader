@@ -14,7 +14,7 @@ st.markdown(
     """
     <style>
         section[data-testid="stSidebar"] {
-            width: 500px !important; # Set the width to your desired value
+            width: 350px !important; # Set the width to your desired value
         }
 
     </style>
@@ -138,10 +138,15 @@ st.subheader(":blue[YTube Live Stream Recorder]",divider='red')
 col1, col2 = st.columns(2)
 
 url = st.sidebar.text_input(':blue[Add Live youtube URL here:]'+':red[*]')
+if url :
+    with col1:
+        st.write("Stream Live ")
+        play_file=st.video(url)
+        
 videoname=st.sidebar.text_input(':blue[Write Name of File]'+':red[*]')
 c=datetime.now()
 current_time=c.strftime('%H:%M')
-videoname=videoname +'@'+str(current_time)
+#videoname=videoname +'@'+str(current_time)
 
 def stream_to_url(url, quality='best'):
     # The "audio_only" quality may be invalid for some streams (check).
@@ -210,7 +215,12 @@ def recording():
         
     st.button("Finish Recording ",on_click=Finish)
 
-  
+if st.button("Play Recorded Video"):
+    with col2 :
+        st.write("Recorded File : "+ videoname )
+        video_file = open('temp/'+videoname+'.mp4', "rb")
+        video_bytes = video_file.read()
+        st.video(video_bytes)
 #st.sidebar.button("Start Record Video  ",on_click=record) 
 st.sidebar.button("Start Record Video 25fps  ",on_click=recording)
 st.sidebar.button("Start Record Audio Only  ",on_click=recordingaudio) 
