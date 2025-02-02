@@ -150,9 +150,10 @@ current_time=c.strftime('%H:%M')
 
 def stream_to_url(url,quality='best'):
     # The "audio_only" quality may be invalid for some streams (check).
-    session = Streamlink()
-    streams = session.streams(url)
-    return streams[quality].to_url()
+    
+    streams = streamlink.streams(url)
+    stream=streams[quality]
+    return stream.url
 
 
 
