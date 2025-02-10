@@ -138,14 +138,14 @@ html ="""
 
 
 st.subheader(":blue[YTube Live Stream Recorder]",divider='red')
-
+model=whisper.load_model('tiny')
 col1, col2 = st.columns(2)
 
 url = st.sidebar.text_input(':blue[Add Live youtube URL here:]'+':red[*]')
 if url :
     with col1:
         st.write("Stream Live ")
-        play_file=st.video(url)
+        play_file=st.sidebar.video(url)
         
 videoname=st.sidebar.text_input(':blue[Write Name of File]'+':red[*]')
 c=datetime.now()
