@@ -175,7 +175,7 @@ def recordingaudio():
     def Finish():
       fmpeg_process.send_signal(signal.SIGQUIT)
       st.write(':red[Recording FINISHED ..... ]',height=30)
-    st.button("Finish Recording ",on_click=Finish)
+    st.sidebar.button("Finish Recording ",on_click=Finish)
 
 
 def record():
