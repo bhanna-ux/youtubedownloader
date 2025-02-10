@@ -8,6 +8,10 @@ from datetime import datetime
 import subprocess 
 from subprocess import Popen,PIPE
 from streamlit.components.v1 import components
+import soundfile as sf
+import librosa
+import whisper
+import itertools
 
 
 st.markdown(
