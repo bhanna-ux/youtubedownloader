@@ -166,7 +166,7 @@ def recordingaudio():
 .input(stream_url)
 .audio
 .output(
-'temp/'+videoname+'.mp3')
+'temp/'+videoname+'.wav')
 .overwrite_output()
 .run_async()
 )
@@ -221,9 +221,36 @@ if st.button("Play Recorded Video"):
         video_file = open('temp/'+videoname+'.mp4', "rb")
         video_bytes = video_file.read()
         st.video(video_bytes)
+
+
+def done():
+
+    lasttimeinterval=0
+
+
+    for i in itertools.count():
+        audio_array, sr = librosa.load('temp/'+videoname+'.wav', sr=16_000)
+        timeinterval=len(audio_array)/sr
+        t=audio_array[int(lasttimeinterval)*sr : int(timeinterval)*sr]
+        sf.write("temp/split_interval.wav", t, sr)
+        result=model.transcribe("temp/split_interval.wav" )
+        if result['text']:
+
+            #translated = GoogleTranslator(source='auto', target='en').translate(result['text'])
+
+            yield str(datetime.timedelta(seconds=int(lasttimeinterval))) , result['text'] #st.text_area(label=' Transcript : ', value= result['text'] ,height=200)
+            
+        yield "\n"
+        #yield translated
+        #with col2:
+                #yield st.write_stream(translated)
+
+        lasttimeinterval=timeinterval
+
 st.sidebar.button("Start Record Video  ",on_click=record) 
 st.sidebar.button("Start Record Video 25fps  ",on_click=recording)
 st.sidebar.button("Start Record Audio Only  ",on_click=recordingaudio) 
+st.sidebar.button("Live Transcribe  ",on_click=done) 
 #def pause():
   #fmpeg_process.send_signal(signal.SIGSTOP)
 #st.sidebar.button("Pause",on_click=pause)
