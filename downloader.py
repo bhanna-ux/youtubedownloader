@@ -184,8 +184,11 @@ def recordingaudio():
 
 def record():
     os.makedirs('temp', exist_ok=True)
-    process= subprocess.Popen( ["streamlink" , url ,
-                                "best", "-o",'temp/'+videoname+'.mp4'])
+    #process= subprocess.Popen( ["streamlink" , url ,
+                               # "best", "-o",'temp/'+videoname+'.mp4'])
+    process= subprocess.Popen( ["streamlink  --stdout  " , url ,
+                                "best", "|"," ffmpeg -i pipe:0  -map 0:a -c copy",'temp/'+videoname+'.wav'])
+  
     #process= subprocess.Popen( ["streamlink" , url ,
                                # "best",  "| ffmpeg -i pipe:0 -r 25 -c:v libx264 -preset fast -threads 4","-o",'temp/'+videoname+'.mp4'])
   #streamlink --stdout "STREAM_URL" best | ffmpeg -i pipe:0 -r 25 -c:v libx264 -preset fast -threads 4 output.mp4
