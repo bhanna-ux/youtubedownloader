@@ -152,7 +152,7 @@ c=datetime.now()
 current_time=c.strftime('%H:%M')
 #videoname=videoname +'@'+str(current_time)
 
-def stream_to_url(url, quality='1080p'):
+def stream_to_url(url, quality='best'):
     # The "audio_only" quality may be invalid for some streams (check).
     session = Streamlink()
     streams = session.streams(url)
